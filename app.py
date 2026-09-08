@@ -83,3 +83,13 @@ if st.button("会議メモを構造化する"):
 
     st.write("### JSON")
     st.json(result.model_dump())
+
+    # JSONファイルとしてダウンロード
+    json_data = result.model_dump_json(indent=2)
+
+    st.download_button(
+        label="JSONをダウンロード",
+        data=json_data,
+        file_name="meeting_notes.json",
+        mime="application/json",
+    )
