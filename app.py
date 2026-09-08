@@ -1,6 +1,7 @@
 import streamlit as st
 from google import genai
 from pydantic import BaseModel, Field
+import pandas as pd
 
 
 # =========================
@@ -93,3 +94,29 @@ if st.button("会議メモを構造化する"):
         file_name="meeting_notes.json",
         mime="application/json",
     )
+
+    # CSV用のTODOデータを作成
+    todo_data = [
+        {
+            "タスク": todo.task,
+            "担当者": todo.owner,
+            "期限": todo.due_date,
+        }
+        for todo in result.todos
+    ]
+
+    todo_df = pd.DataFrame(todo_data)
+
+    st.write("### TODO一覧")
+
+    st.dataframe(todo_df)
+
+    # CSVに変換
+    csv_data = todo_df.to_csv(index=False, encoding="utf-8-sig")
+
+    st.download_button(
+        label="CSVをダウンロード",
+        data=csv_data,
+        file_name="meeting_todos.csv",
+        mime="text/csv",
+    )    
