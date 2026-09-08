@@ -16,6 +16,10 @@ Streamlit による Web UI から会議メモを入力すると、Gemini API が
 
 ## デモ
 
+実際にブラウザからアプリを操作できます。
+
+👉 **[会議メモ AI 構造化ツールを試す](https://takanorishima-meeting-notes-ai-app-fgedqg.streamlit.app/)**
+
 ### ① 会議メモを入力
 
 Streamlit の Web UI から、自由形式の会議メモを入力します。
